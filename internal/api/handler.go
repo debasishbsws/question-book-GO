@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	// "log"
 	"net/http"
 
 	"github.com/debasishbsws/question-book/internal/db"
@@ -42,11 +41,7 @@ func InstituteByIdHandler(w http.ResponseWriter, r *http.Request) {
 
 	institute, err := model.GetInstituteWithSubjectsByID(instituteID)
 	if err != nil {
-		http.Error(w, "Error fetching institute.", http.StatusInternalServerError)
-		return
-	}
-	if institute == nil {
-		http.Error(w, "No institute found with the specified ID name: "+instituteID, http.StatusNotFound)
+		http.Error(w, err.Error(), http.StatusNotFound)
 		return
 	}
 
@@ -73,4 +68,26 @@ func SubjectsHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// // Add your Question Papers handler similarly
+// Question Paper Handlers
+
+func QuestionPapersHandler(w http.ResponseWriter, r *http.Request) {
+	instituteID := mux.Vars(r)["instituteId"]
+	subjectID := mux.Vars(r)["subjectId"]
+
+	var filters map[string]string = make(map[string]string)
+
+	filters["year"] = r.URL.Query().Get("year")
+	filters["semester"] = r.URL.Query().Get("semester")
+	filters["examType"] = r.URL.Query().Get("examType")
+
+	questionPapers, err := model.GetQuestionPapersByInstituteIdAndSubjectId(instituteID, subjectID, filters)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	if questionPapers == nil {
+		http.Error(w, "No question papers found with the specified Institute ID and Subject ID.", http.StatusNotFound)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(questionPapers)
+}

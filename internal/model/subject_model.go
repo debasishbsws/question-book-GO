@@ -1,13 +1,12 @@
 package model
 
 import (
+	"errors"
+	"fmt"
 	"log"
 
 	"github.com/debasishbsws/question-book/internal/db"
 )
-
-// "encoding/json"
-// "fmt"
 
 type Subject struct {
 	ID       string   `json:"id"`
@@ -26,8 +25,8 @@ func GetSubjectsByInstituteId(instituteID string) (*[]Subject, error) {
 	var subjects []Subject
 	result, err := db.DbPool.Query(query, instituteID)
 	if err != nil {
-		log.Fatalln(err)
-		return &subjects, err
+		errMessage := fmt.Sprintf("No institute with the specified ID: %v", instituteID)
+		return &subjects, errors.New(errMessage)
 	}
 	defer result.Close()
 
@@ -36,13 +35,13 @@ func GetSubjectsByInstituteId(instituteID string) (*[]Subject, error) {
 		var synonymsJson string
 		err := result.Scan(&subject.ID, &subject.Name, &synonymsJson)
 		if err != nil {
-			log.Fatalln(err)
+			log.Println(err)
 			return &subjects, err
 		}
 
 		subject.Synonyms, err = strJsonArrayToSlice(synonymsJson)
 		if err != nil {
-			log.Fatalln(err)
+			log.Println(err)
 			return nil, err
 		}
 		subjects = append(subjects, subject)

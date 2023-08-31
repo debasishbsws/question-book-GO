@@ -30,9 +30,6 @@ func InitializeDatabase() error {
 	if err != nil {
 		return err
 	}
-
-	// Set up other pool settings as needed, e.g., max connections, etc.
-
 	initialized = true
 	return nil
 }

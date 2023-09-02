@@ -6,8 +6,8 @@ dotenv.config();
 
 const dataFolderPath = process.env.DATA_FOLDER_PATH || "./data/";
 
-const githubUserName = process.env.GITHUB_USERNAME || "debasishbsws";
-const githubRepoName = process.env.GITHUB_REPO || "question-book-GO";
+const githubUserName = process.env.GH_USERNAME || "debasishbsws";
+const githubRepoName = process.env.GH_REPO_NAME || "question-book-GO";
 
 
 const InstituteTableDATA = [];

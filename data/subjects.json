@@ -13,5 +13,10 @@
         "id": "computer_science",
         "subject_name": "Computer Science",
         "synonyms": ["computer", "cse", "computer science eng"]
+    },
+    {
+        "id": "mca",
+        "subject_name": "Master of Computer Applications",
+        "synonyms": ["mca", "master of computer"]
     }
 ]

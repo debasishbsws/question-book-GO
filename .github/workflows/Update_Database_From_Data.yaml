@@ -1,0 +1,33 @@
+name: Update Database
+
+on:
+  pull_request:
+    branch:
+      - main
+    types:
+      - merged
+    paths:
+      - './data/**'  # Path to the /data folder
+
+jobs:
+  update-database:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16  # Use the Node.js version you need
+
+      - name: Install Dependencies
+        run: npm install mysql2
+
+      - name: Run JavaScript with MySQL
+        env: 
+          DATA_FOLDER_PATH: "${{ github.workspace }}/data"
+          DATABASE_URI: ${{ secrets.DATABASE_URI }}
+
+        run: node ./hack/update-database.js

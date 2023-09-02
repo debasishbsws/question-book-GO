@@ -8,11 +8,8 @@ import (
 )
 
 var (
-	PORT          string
-	DB_USER_NAME  string
-	DB_PASSWORD   string
-	DATABASE_NAME string
-	DB_HOST       string
+	PORT         string
+	DATABASE_URI string
 )
 
 func LoadEnv() {
@@ -21,15 +18,8 @@ func LoadEnv() {
 	}
 
 	PORT = os.Getenv("PORT")
-	DB_USER_NAME = os.Getenv("DB_USER_NAME")
-	DB_PASSWORD = os.Getenv("DB_PASSWORD")
-	DATABASE_NAME = os.Getenv("DATABASE_NAME")
-	DB_HOST = os.Getenv("DB_HOST")
+	DATABASE_URI = os.Getenv("DATABASE_URI")
 	if PORT == "" {
 		PORT = "8000"
 	}
-
-	fmt.Println("PORT:", PORT)
-	fmt.Println("DB_USER_NAME:", DB_USER_NAME)
-
 }

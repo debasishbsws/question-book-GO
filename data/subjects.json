@@ -1,0 +1,17 @@
+[
+    {
+        "id": "demo_subject_1",
+        "subject_name": "Demo Subject 1",
+        "synonyms": ["demosubject1 Alt 1", "demosubject1 Alt 2"]
+    },
+    {
+        "id": "demo_subject_2",
+        "subject_name": "Demo Subject 2",
+        "synonyms": ["demosubject2 Alt 1", "demosubject2 Alt 2"]
+    },
+    {
+        "id": "computer_science",
+        "subject_name": "Computer Science",
+        "synonyms": ["computer", "cse", "computer science eng"]
+    }
+]

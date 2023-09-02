@@ -1,0 +1,7 @@
+{
+    "name": "Demo Institute",
+    "altName": ["demo-alt_name1", "demo-alt_name2", "demo-alt_name3"],
+    "website": "https://www.demo.website.com/",
+    "country": "demo-country",
+    "state": "demo-state"
+}

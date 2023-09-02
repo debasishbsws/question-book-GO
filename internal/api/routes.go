@@ -23,8 +23,4 @@ func Router(router *mux.Router) {
 	 * Example URL : http://<Host>/api/questions/1/1?year=2019&semester=spring&examType=endsem
 	 */
 	router.HandleFunc("/questions/{instituteId}/{subjectId}", QuestionPapersHandler).Methods("GET")
-
-	// r.HandleFunc("/questionpapers/{courseId}", QuestionPapersHandler)
-	// r.HandleFunc("/questionpapers/{courseId}/{questionPaperId}", QuestionPaperByIdHandler)
-
 }

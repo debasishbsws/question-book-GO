@@ -2,7 +2,6 @@ package db
 
 import (
 	"database/sql"
-	"fmt"
 	"sync"
 
 	"github.com/debasishbsws/question-book/config"
@@ -23,10 +22,9 @@ func InitializeDatabase() error {
 		return nil
 	}
 
-	// Create the database connection pool
-	connectionString := fmt.Sprintf("%s:%s@tcp(%s)/%s", config.DB_USER_NAME, config.DB_PASSWORD, config.DB_HOST, config.DATABASE_NAME)
+	// Create the database connection pool)
 	var err error
-	DbPool, err = sql.Open("mysql", connectionString)
+	DbPool, err = sql.Open("mysql", config.DATABASE_URI)
 	if err != nil {
 		return err
 	}

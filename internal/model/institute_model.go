@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 
-	// "fmt"
 	"log"
 
 	"github.com/debasishbsws/question-book/internal/db"
